@@ -3,11 +3,11 @@
 # RU: https://cloud.yandex/ru/docs/data-transfer/tutorials/opensearch-to-object-storage
 # EN: https://cloud.yandex/en/docs/data-transfer/tutorials/opensearch-to-object-storage
 #
-# Configure the parameters of the source claster, target backet and transfer:
+# Configure the parameters of the source claster, target bucket and transfer:
 
 locals {
   folder_id    = "" # Your cloud folder ID, same as for provider
-  mos_version  = "" # Desired version of the Opensearch. For available versions, see the documentation main page: https://yandex.cloud/en/docs/managed-opensearch/.
+  mos_version  = "" # Desired version of the OpenSearch. For available versions, see the documentation main page: https://yandex.cloud/en/docs/managed-opensearch/.
   mos_password = "" # OpenSearch admin's password
   bucket_name  = "" # Name of an Object Storage bucket. Must be unique in the Cloud
 
