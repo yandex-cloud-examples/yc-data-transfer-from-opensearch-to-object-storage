@@ -15,7 +15,10 @@ locals {
   # You should set up the endpoints using the GUI to obtain their IDs
   source_endpoint_id = "" # Set the source endpoint ID
   target_endpoint_id = "" # Set the target endpoint ID
-  transfer_enabled   = 0  # Set to 1 to enable the transfer
+  transfer_enabled   = 0  # Set to 1 to enable the creation of transfer
+
+  # Setting for the YC CLI that allows running CLI command to activate the transfer
+  profile_name = "" # Name of the YC CLI profile
 
   # The following settings are predefined. Change them only if necessary.
   network_name        = "network"                               # Name of the network
@@ -153,4 +156,8 @@ resource "yandex_datatransfer_transfer" "opensearch-to-object-storage-transfer" 
   source_id   = local.source_endpoint_id
   target_id   = local.target_endpoint_id
   type        = "SNAPSHOT_ONLY" # Copy all data from the source
+
+  provisioner "local-exec" {
+    command = "yc --profile ${local.profile_name} datatransfer transfer activate ${yandex_datatransfer_transfer.opensearch-to-object-storage-transfer[count.index].id}"
+  }
 }
